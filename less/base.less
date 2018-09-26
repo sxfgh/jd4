@@ -1,0 +1,187 @@
+/* 京东的主体颜色 */
+
+@main-color: #de181b;
+
+/* 样式初始化文件 */
+
+* {
+    margin: 0px;
+    padding: 0px;
+    /* 移动端一般会设置盒模型为border-box 防止边框和padding撑大盒子超出屏幕宽度出现滚动条 */
+    box-sizing: border-box;
+    /*移动端a标签按住的高亮背景色 设置透明即可*/
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+li {
+    list-style: none;
+}
+
+input {
+    /* 去除输入框的内外边框 */
+    border: 0;
+    outline: 0;
+}
+
+img {
+    /* 去掉图片的边框 */
+    border: none;
+    /* 去掉图片底部3px的间距 */
+    vertical-align: middle;
+}
+
+a {
+    color: #666;
+    text-decoration: none;
+}
+
+
+/* 清除浮动的公共类 */
+
+.clearfix::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+
+/* 左右浮动的类名 */
+
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
+
+.bl {
+    border-left: 1px solid #ccc;
+}
+
+.bt {
+    border-top: 1px solid #ccc;
+}
+
+.bb {
+    border-bottom: 1px solid #ccc;
+}
+
+.br {
+    border-right: 1px solid #ccc;
+}
+
+/* 设置京东首页的body宽度最大为640px */
+
+.layout {
+    margin: 0 auto;
+    max-width: 640px;
+    min-width: 320px;
+    background-color: #fff;
+}
+
+
+/* 头部区域的公共样式 */
+
+#header {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0);
+    position: fixed;
+    /* 固定定位的宽度100%参照不是父元素  而是浏览器宽度 */
+    width: 100%;
+    /* 如果要兼容PC端要设置最大宽度为640px */
+    max-width: 640px;
+    z-index: 2;
+    /* 属性选择器匹配所有类名以icon-开头的元素 */
+    [class^="icon-"]{
+        background-image: url(../images/sprites.png); 
+        background-size: 200px 200px;
+        /* 修改背景图的定位位置 从内容区域开始定位  可以让背景图跟着内容部分来走
+         背景图也可以被padding 挤动*/
+        /* 一般移动端针对a标签会使用padding padding范围内都是可以点击到 让a变大更加好点击 */
+        background-origin: content-box;
+        background-clip: content-box;
+    }
+    .icon-logo {
+        display: block;
+        width: 80px;
+        height: 40px;
+        /* background-image: url(../images/sprites.png); */
+        /* 图片本身是400px*400px要缩小一半为200*200px 背景图就设置背景图大小 */
+        /* background-size: 200px 200px; */
+        background-position: 0 -108px;
+        /* 注意如果想使用背景图连写要转义这个/ ~"/" 让/变成普通的CSS的斜杠而不是除号 */
+        /* background: url(../images/sprites.png) 0 -108px ~'/' 200px 200px; */
+        padding: 5px 10px;        
+    }
+    .icon-back{
+        display: block;
+        width: 40px;
+        height: 40px;
+        padding: 10px;
+        background-position: -20px 0;
+    }    
+    .icon-menu{
+        display: block;
+        width: 40px;
+        height: 40px;
+        padding: 10px;
+        background-position: -60px 0;
+    }
+    .search-from {
+        flex: 1;
+        padding-top: 5px;
+        position: relative;
+        .icon-search {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            left: 5px;
+            top: 10px;
+            /* background-image: url(../images/sprites.png);
+            background-size: 200px 200px;
+            background-position: -60px -108px; */
+            background: url(../images/sprites.png) -60px -108px ~'/' 200px 200px;
+        }
+        > input {
+            width: 100%;
+            height: 30px;
+            border-radius: 15px;
+            padding-left: 30px;
+        }
+    }
+    .login {
+        display: block;
+        padding: 5px 10px;
+        width: 60px;
+        height: 40px;
+        text-align: center;
+        line-height: 30px;
+        color: #fff;
+    }
+}
+
+
+/* 底部区域公共样式 */
+
+#footer {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    max-width: 640px;
+    background-color: #fff;
+    >ul {
+        display: flex;
+        >li {
+            flex: 1;
+            >a {
+                display: block;
+                text-align: center;
+                >img {
+                    width: 65px;
+                    height: 50px;
+                }
+            }
+        }
+    }
+}
